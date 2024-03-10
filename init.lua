@@ -1,3 +1,5 @@
+vim.wo.number = true
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -12,7 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  'luisiacc/gruvbox-baby',
+  'nyoom-engineering/oxocarbon.nvim',
   'neovim/nvim-lspconfig',
   'nvim-treesitter/nvim-treesitter',
   'nvim-tree/nvim-tree.lua',
@@ -32,11 +34,12 @@ require("lazy").setup({
   },
 })
 
-vim.cmd("colorscheme gruvbox-baby")
+vim.cmd.colorscheme "oxocarbon"
 
 local lspconfig = require('lspconfig')
 lspconfig.tsserver.setup {}
 lspconfig.rust_analyzer.setup {}
+require'lspconfig'.zls.setup{}
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "lua", "javascript", "typescript", "tsx", "svelte", "json", "rust" },
